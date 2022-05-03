@@ -10,7 +10,7 @@ const Header = () => {
             alignContent: 'center',
             justifyContent: 'center',
             padding: 0,
-            marginTop:125,
+            marginTop:10
         }
     })
 
