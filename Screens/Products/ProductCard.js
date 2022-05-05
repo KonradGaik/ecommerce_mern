@@ -29,7 +29,7 @@ const ProductCard = (props) => {
                 + '...' : name
             }
         </Text>
-        <Text style={styles.price}>${price}</Text>
+        <Text style={styles.price}>{price} PLN</Text>
 
 
         { countInStock > 0 ? (
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(null, mapToDispatchToProps)(ProductCart);
+export default connect(null, mapToDispatchToProps)(ProductCard);
