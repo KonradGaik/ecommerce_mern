@@ -4,8 +4,9 @@ import { Text, Container, ListItem, Header, Radio, Right, Left, Content, Picker,
 
 const methods = [
     { name: 'Gotówka przy odbiorze', value: 1},
-    { name: 'Płatność kartą', value: 2},
-    { name: 'Przelew', value: 3}
+    { name: 'Przelew', value: 2},
+    { name: 'Płatność kartą', value: 3},
+    
 ]
 
 const paymentCards = [
@@ -31,7 +32,7 @@ const Payment = (props) => {
             <Content>
                 {methods.map((item, index)=> {
                     return(
-                        <ListItem onPress={()=> setSelected(item.value) }>
+                        <ListItem key={item.nam} onPress={()=> setSelected(item.value) }>
                             <Left>
                                 <Text>
                                     {item.name}
@@ -45,13 +46,26 @@ const Payment = (props) => {
                     )
                 })}
                 {selected == 3 ? (
-                    <Picker mode="dropdown"
-                    iosIcon={<Icon name={"arrow-down"}
-                    headerStyle={{backgroundColor: 'orange'}}
-                    headerBackButtonTextStyle={{color:'#fff'}} />}>
-
-                    </Picker>
-                )}
+                   <Picker
+                    mode="dropdown"
+                    iosIcon={<Icon name={"arrow-down"} />}
+                    headerStyle={{ backgroundColor: 'brown' }}
+                    headerBackButtonTextStyle={{ color: '#fff' }}
+                    headerTitleStyle={{ color: '#ccc' }}
+                    selectedValue={card}
+                    onValueChange={(x) => setCard(x)}
+                   >
+                       {paymentCards.map((c, index) => {
+                           return <Picker.Item 
+                           key={c.name} 
+                           label={c.name} 
+                           value={c.name} />
+                       })}
+                   </Picker>
+               ) : null }
+               <View style={{marginTop:60, alignSelf: 'center'}}>
+                       <Button title={'Potwierdź'} onPress={()=> props.navigation.navigate('Potwierdź',{ order })} />
+               </View>
             </Content>
         </Container>
     )

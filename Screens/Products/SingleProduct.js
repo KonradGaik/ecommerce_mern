@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
 import { Left, Right, Container, H1 } from 'native-base';
-// import Toast from 'react-native-toast-message';
 // import EasyButton from '../../Shared/StyledComponents/EasyButton'
 // import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
 
@@ -52,7 +51,7 @@ const SingleProduct = (props) => {
                 <View style={styles.availabilityContainer}>
                     <View style={styles.availability}>
                         <Text style={{ marginRight: 10 }}>
-                            Availability: {availabilityText}
+                            Dostępność: {availabilityText}
                         </Text>
                         {availability}
                     </View>
