@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext} from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, ScrollView } from 'react-native'
 import { Item, Picker, Toast } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import FormContainer from '../../../Shared/Form/FormContainer'
@@ -47,11 +47,12 @@ const Checkout = (props) => {
 
     return (
         <KeyboardAwareScrollView
-            viewIsInsideTabBar={true}
-            extraHeight={200}
-            enableOnAndroid={true}
+             viewIsInsideTabBar={true}
+             extraHeight={200}
+             enableOnAndroid={true}
         >
             <FormContainer title={"Adres dostawy"}>
+                <Text>Numer telefonu</Text>
                 <Input
                     placeholder={"Numer telefonu"}
                     name={"phone"}
@@ -59,24 +60,28 @@ const Checkout = (props) => {
                     keyboardType={"numeric"}
                     onChangeText={(text) => setPhone(text)}
                 />
+                 <Text>Numer telefonu</Text>
                    <Input
                     placeholder={"Adres dostawy 1"}
                     name={"ShippingAddress1"}
                     value={address}
                     onChangeText={(text) => setAddress(text)}
                 />
+                 <Text>Numer telefonu</Text>
                    <Input
                     placeholder={"Adres dostawy 2"}
                     name={"ShippingAddress2"}
                     value={address2}
                     onChangeText={(text) => setAddress2(text)}
                 />
+                 <Text>Numer telefonu</Text>
                    <Input
                     placeholder={"Miasto"}
                     name={"city"}
                     value={city}
                     onChangeText={(text) => setCity(text)}
                 />
+                 <Text>Numer telefonu</Text>
                    <Input
                     placeholder={"Kod pocztowy"}
                     name={"zip"}

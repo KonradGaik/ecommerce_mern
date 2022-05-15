@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
 import { Left, Right, Container, H1 } from 'native-base';
 // import EasyButton from '../../Shared/StyledComponents/EasyButton'
-// import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
+ import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
 
 import { connect } from 'react-redux';
 import * as actions from '../../Redux/Actions/cartActions';
@@ -13,23 +13,23 @@ const SingleProduct = (props) => {
     const [availability, setAvailability] = useState(null);
     const [availabilityText, setAvailabilityText] = useState("")
 
-    // useEffect(() => {
-    //     if (props.route.params.item.countInStock == 0) {
-    //         setAvailability(<TrafficLight unavailable></TrafficLight>);
-    //         setAvailabilityText("Unvailable")
-    //     } else if (props.route.params.item.countInStock <= 5) {
-    //         setAvailability(<TrafficLight limited></TrafficLight>);
-    //         setAvailabilityText("Limited Stock")
-    //     } else {
-    //         setAvailability(<TrafficLight available></TrafficLight>);
-    //         setAvailabilityText("Available")
-    //     }
+    useEffect(() => {
+        if (props.route.params.item.countInStock == 0) {
+            setAvailability(<TrafficLight unavailable></TrafficLight>);
+            setAvailabilityText("Niedostepne")
+        } else if (props.route.params.item.countInStock <= 5) {
+            setAvailability(<TrafficLight limited></TrafficLight>);
+            setAvailabilityText("Ograniczona ilość")
+        } else {
+            setAvailability(<TrafficLight available></TrafficLight>);
+            setAvailabilityText("Dostępne")
+        }
 
-    //     return () => {
-    //         setAvailability(null);
-    //         setAvailabilityText("");
-    //     }
-    // }, [])
+        return () => {
+            setAvailability(null);
+            setAvailabilityText("");
+        }
+    }, [])
 
     return (
         <Container style={styles.container}>
@@ -68,20 +68,6 @@ const SingleProduct = (props) => {
                     onPress={()=>{
                         props.addItemToCart(item) 
                     }} />
-                   {/* <EasyButton 
-                   primary
-                   medium
-                   onPress={() => {props.addItemToCart(item.id),
-                        Toast.show({
-                            topOffset: 60,
-                            type: "success",
-                            text1: `${item.name} added to Cart`,
-                            text2: "Go to your cart to complete order"
-                        })
-                }}
-                   >
-                       <Text style={{ color: 'white'}}>Add</Text>
-                   </EasyButton> */}
                 </Right>
             </View>
         </Container>

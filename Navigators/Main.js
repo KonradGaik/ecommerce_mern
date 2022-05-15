@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -6,14 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import HomeNavigatior from './HomeNavigator'
 import CartNavigator from './CartNavigator'
 import UserNavigator from './UserNavigator';
+import AdminNavigator from './AdminNavigator';
 import { View } from 'native-base';
 import cartItems from '../Redux/Reducers/cartItem';
 import CartIcon from '../Shared/CartIcon';
 import HomeNavigator from './HomeNavigator';
+import AuthGlobal from '../Context/store/AuthGlobal';
 
 const Tab = createBottomTabNavigator()
 
 const Main = () => {
+
+  const context = useContext(AuthGlobal)
     return(
         <Tab.Navigator
         initialRouteName="Home"
@@ -41,17 +45,18 @@ const Main = () => {
           ),
         }}
       />
-          
-
-          <Tab.Screen
-        name="Admin"
-        component={HomeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="cog" color={color} size={30} />
-          ),
-        }}
-      />
+            {context.stateUser.user.isAdmin === true ? (
+  <Tab.Screen
+  name="Admin"
+  component={AdminNavigator}
+  options={{
+    tabBarIcon: ({ color }) => (
+      <Icon name="cog" color={color} size={30} />
+    ),
+  }}
+/>
+            ): null}
+        
 
 <Tab.Screen
         name="Uzytkownik"
@@ -75,7 +80,7 @@ const Main = () => {
           ),
         }}
       />
-            
+
         </Tab.Navigator>
     )
 }

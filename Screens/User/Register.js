@@ -4,7 +4,7 @@ import FormContainer from "../../Shared/Form/FormContainer";
 import Input from "../../Shared/Form/Input";
 import Error from "../../Shared/Error";
 import Toast from "react-native-toast-message";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view'
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
 
 import axios from "axios";

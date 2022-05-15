@@ -7,6 +7,7 @@ import {
     Text,
     Button
 } from 'react-native'
+import EasyButton from '../../Shared/StyledComponents/EasyButton'
 import { connect } from 'react-redux'
 import * as actions from '../../Redux/Actions/cartActions'
 

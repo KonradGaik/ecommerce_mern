@@ -28,7 +28,7 @@ export default function App() {
         <NavigationContainer>
           <Header />
           <Main />
-          <Toast refs={(refs)=> Toast.setRef(refs)} />
+          <Toast refs={(ref)=> Toast.setRef(ref)} />
         </NavigationContainer>
       </Provider>
     </Auth>
