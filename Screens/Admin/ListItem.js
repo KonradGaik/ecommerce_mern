@@ -11,12 +11,13 @@ import {
     Modal
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"
+import { useTranslation } from 'react-i18next';
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
 
 var { width } = Dimensions.get("window");
 
 const ListItem = (props) => {
-
+    const { t, i18n } = useTranslation();
     const [modalVisible, setModalVisible] = useState(false)
 
     return(
@@ -53,14 +54,14 @@ const ListItem = (props) => {
                             setModalVisible(false)
                         ]}
                         >
-                            <Text style={styles.textStyle}>Edytuj</Text>
+                            <Text style={styles.textStyle}>{t('edit')}</Text>
                         </EasyButton>
                         <EasyButton 
                         medium 
                         danger
                         onPress={() => [props.delete(props._id), setModalVisible(false)]}
                         >
-                            <Text style={styles.textStyle}>Usuń</Text>
+                            <Text style={styles.textStyle}>{t('delete')}</Text>
                         </EasyButton>
                     </View>
                 </View>
@@ -87,7 +88,7 @@ const ListItem = (props) => {
                 <Text style={styles.item}>{props.brand}</Text>
                 <Text style={styles.item} numberOfLines={1} ellipsizeMode="tail">{props.name}</Text>
                 <Text style={styles.item} numberOfLines={1} ellipsizeMode="tail">{props.category.name}</Text>
-                <Text style={styles.item}>$ {props.price}</Text>
+                <Text style={styles.item}>PLN {props.price}</Text>
             </TouchableOpacity>
         </View>
     )

@@ -6,10 +6,11 @@ import * as actions from '../../../Redux/Actions/cartActions'
 import Toast from 'react-native-toast-message'
 import axios from 'axios'
 import baseURL from '../../../assets/common/baseUrl'
-
+import { useTranslation } from 'react-i18next';
 let {width, height} = Dimensions.get('window')
 const Confirm = (props) => {
-
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const finalOrder = props.route.params
     const confirmOrder = () => {
         
@@ -47,23 +48,23 @@ const Confirm = (props) => {
         <ScrollView contentContainerStyle={styles.conatiner}>
             <View style={styles.titleContainer}>
                 <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                    Potwierdź zamówienie
+                    {t('confirmOrder')}
                 </Text>
                 {props.route.params ?
                 <View style={{borderWidth:1, borderColor: 'orange'}}>
                     <Text style={styles.title}>
-                        Adres dostawy:
+                    {t('shippingAddress')}
                     </Text>
                     <View style={{padding:8}}>
-                        <Text>Adres 1: {finalOrder.order.order.shippingAddress1}</Text>
-                        <Text>Adres 2: {finalOrder.order.order.shippingAddress2}</Text>
-                        <Text>Numer telefonu: {finalOrder.order.order.phone}</Text>
-                        <Text>Miasto: {finalOrder.order.order.city}</Text>
-                        <Text>Kod pocztowy: {finalOrder.order.order.zip}</Text>
-                        <Text>Kraj: {finalOrder.order.order.country}</Text>
+                        <Text> {t('address1')}: {finalOrder.order.order.shippingAddress1}</Text>
+                        <Text>{t('address2')}: {finalOrder.order.order.shippingAddress2}</Text>
+                        <Text>{t('phoneNumber')}: {finalOrder.order.order.phone}</Text>
+                        <Text>{t('city')}: {finalOrder.order.order.city}</Text>
+                        <Text>{t('zipcode')}: {finalOrder.order.order.zip}</Text>
+                        <Text>{t('country')}: {finalOrder.order.order.country}</Text>
                     </View>
                     <Text style={styles.shipping}>
-                        Produkty
+                    {t('products')}
                     </Text>
                     {finalOrder.order.order.orderItems.map((x)=> {
                         return <ListItem

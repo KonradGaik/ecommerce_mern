@@ -5,13 +5,14 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import FormContainer from '../../../Shared/Form/FormContainer'
 import Input from '../../../Shared/Form/Input'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux'
 
 const countries = require("../../../assets/countries.json");
 
 const Checkout = (props) => {
-
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const [ orderItems, setOrderItems ] = useState();
     const [ address, setAddress ] = useState();
     const [ address2, setAddress2 ] = useState();
@@ -52,7 +53,7 @@ const Checkout = (props) => {
              enableOnAndroid={true}
         >
             <FormContainer title={"Adres dostawy"}>
-                <Text>Numer telefonu</Text>
+                <Text>{t('phoneNumber')}</Text>
                 <Input
                     placeholder={"Numer telefonu"}
                     name={"phone"}
@@ -60,28 +61,28 @@ const Checkout = (props) => {
                     keyboardType={"numeric"}
                     onChangeText={(text) => setPhone(text)}
                 />
-                 <Text>Numer telefonu</Text>
+                 <Text>{t('address1')}</Text>
                    <Input
                     placeholder={"Adres dostawy 1"}
                     name={"ShippingAddress1"}
                     value={address}
                     onChangeText={(text) => setAddress(text)}
                 />
-                 <Text>Numer telefonu</Text>
+                 <Text>{t('address1')}</Text>
                    <Input
                     placeholder={"Adres dostawy 2"}
                     name={"ShippingAddress2"}
                     value={address2}
                     onChangeText={(text) => setAddress2(text)}
                 />
-                 <Text>Numer telefonu</Text>
+                 <Text>{t('city')}</Text>
                    <Input
                     placeholder={"Miasto"}
                     name={"city"}
                     value={city}
                     onChangeText={(text) => setCity(text)}
                 />
-                 <Text>Numer telefonu</Text>
+                 <Text>{t('zipcode')}</Text>
                    <Input
                     placeholder={"Kod pocztowy"}
                     name={"zip"}

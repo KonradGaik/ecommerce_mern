@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { Text, Left, Right, ListItem, Thumbnail, Body } from "native-base";
-
+import { useTranslation } from 'react-i18next';
 const CartItem = (props) => {
+  const { t, i18n } = useTranslation();
+  i18n.changeLanguage('pl');
     const data = props.item.item;
   return (
     <ListItem style={styles.listItem} key={Math.random()} avatar>

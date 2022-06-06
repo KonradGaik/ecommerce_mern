@@ -11,10 +11,11 @@ import EasyButton from "../../Shared/StyledComponents/EasyButton"
 import baseURL from "../../assets/common/baseUrl";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage"
-
+import { useTranslation } from 'react-i18next';
 var { width } = Dimensions.get("window")
 
 const Item = (props) => {
+    const { t, i18n } = useTranslation();
     return (
         <View style={styles.item}>
             <Text>{props.item.name}</Text>
@@ -23,7 +24,7 @@ const Item = (props) => {
                 medium
                 onPress={() => props.delete(props.item._id)}
             >
-                <Text style={{ color: "white", fontWeight: "bold"}}>Delete</Text>
+                <Text style={{ color: "white", fontWeight: "bold"}}>{t('delete')}</Text>
             </EasyButton>
         </View>
     )
@@ -67,7 +68,7 @@ const Categories = (props) => {
         axios
         .post(`${baseURL}categories`, category, config)
         .then((res) => setCategories([...categories, res.data]))
-        .catch((error) => alert("Blad wgrywania kategorii"));
+        .catch((error) => alert("Send data error"));
 
         setCategoryName("");
     }
@@ -85,7 +86,7 @@ const Categories = (props) => {
             const newCategories = categories.filter((item) => item.id !== id);
             setCategories(newCategories);
         })
-        .catch((error) => alert("Blad wgrywania kategorii"));
+        .catch((error) => alert("Send data error"));
     }
 
     return (
@@ -101,7 +102,7 @@ const Categories = (props) => {
             </View>
             <View style={styles.bottomBar}>
                 <View>
-                    <Text>Dodaj kategorię</Text>
+                    <Text>{t("addCategory")}</Text>
                 </View>
                 <View style={{ width: width / 2.5 }}>
                     <TextInput 
@@ -116,7 +117,7 @@ const Categories = (props) => {
                         primary
                         onPress={() => addCategory()}
                     >
-                        <Text style={{ color: "white", fontWeight: "bold"}}>Potwierdź</Text>
+                        <Text style={{ color: "white", fontWeight: "bold"}}>{t('accept')}</Text>
                     </EasyButton>
                 </View>
             </View>

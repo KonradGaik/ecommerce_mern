@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { ListItem, Badge, Text } from 'native-base';
-
+import { useTranslation } from 'react-i18next';
 const CategoryFilter = (props) => {
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
 
     return(
         <ScrollView
@@ -22,7 +24,7 @@ const CategoryFilter = (props) => {
                             props.active == -1 ? styles.active : styles.inactive
                         ]}
                     >
-                        <Text style={{ color: 'white' }}>Wszystkie</Text>
+                        <Text style={{ color: 'white' }}>{t('all')}</Text>
                     </Badge>
                 </TouchableOpacity>
                 {props.categories.map((item) => (

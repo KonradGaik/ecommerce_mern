@@ -8,14 +8,16 @@ import baseURL from '../../assets/common/baseUrl';
 import AuthGlobal from '../../Context/store/AuthGlobal';
 import { logoutUser } from '../../Context/actions/Auth.actions';
 import { useEffect } from 'react/cjs/react.development';
- 
+import { useTranslation } from 'react-i18next';
 const UserProfile = (props) => {
- 
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const context = useContext(AuthGlobal);
  
     const [userProfile, setUserProfile] = useState()
  
     useEffect(() => {
+        
         if (
             context.stateUser.isAuthenticated === false ||
             context.stateUser.isAuthenticated === null
@@ -28,7 +30,6 @@ const UserProfile = (props) => {
                     .get(`${baseURL}users/${context.stateUser.user.userId}`, {
                         headers: { Authorization: `Uzytkownik: ${res}` },
                     }).then((user) => setUserProfile(user.data))
-                    //.then((user) =>console.log(user.data));
             })
             .catch((error) => console.log(error));
         return () => {

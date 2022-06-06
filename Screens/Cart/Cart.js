@@ -6,10 +6,12 @@ import { Container, Text, Left, Right, H1, ListItem, Thumbnail, Body } from "nat
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../../Redux/Actions/cartActions'
-
+import { useTranslation } from 'react-i18next';
 let { height, width } = Dimensions.get('window')
 
 const Cart = (props) => {
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     let total = 0;
 props.cartItems.forEach(cart => {
     return (total += cart.product.price)
@@ -20,7 +22,7 @@ return(
     <>
     {props.cartItems.length ? (
         <Container>
-            <H1 style={{alignSelf: 'center'}}> Koszyk </H1>
+            <H1 style={{alignSelf: 'center'}}> {t('basket')} </H1>
             <SwipeListView data={props.cartItems}
              renderItem={(data) => <CartItem item={data} />} 
              renderHiddenItem={(data) => (
@@ -59,7 +61,7 @@ return(
         </Container>
     ):(
         <Container style={styles.emptyContainer}>
-            <Text> Twój koszyk jest pusty... </Text>
+            <Text> {t('yourBasketIsEmpty')} </Text>
         </Container>
     )}
     </>

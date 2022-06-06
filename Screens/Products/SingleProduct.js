@@ -3,12 +3,13 @@ import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native'
 import { Left, Right, Container, H1 } from 'native-base';
 // import EasyButton from '../../Shared/StyledComponents/EasyButton'
  import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
-
+ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import * as actions from '../../Redux/Actions/cartActions';
 
 const SingleProduct = (props) => {
-
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const [item, setItem] = useState(props.route.params.item);
     const [availability, setAvailability] = useState(null);
     const [availabilityText, setAvailabilityText] = useState("")
@@ -51,7 +52,7 @@ const SingleProduct = (props) => {
                 <View style={styles.availabilityContainer}>
                     <View style={styles.availability}>
                         <Text style={{ marginRight: 10 }}>
-                            Dostępność: {availabilityText}
+                            {t('availability')}: {availabilityText}
                         </Text>
                         {availability}
                     </View>

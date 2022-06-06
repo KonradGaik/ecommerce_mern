@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { View, Button } from 'react-native';
 import { Text, Container, ListItem, Header, Radio, Right, Left, Content, Picker, Icon, Body, Title } from 'native-base'
-
+import { useTranslation } from 'react-i18next';
 const methods = [
     { name: 'Gotówka przy odbiorze', value: 1},
     { name: 'Przelew', value: 2},
@@ -16,6 +16,8 @@ const paymentCards = [
  {name: 'Inne', value: 4},
 ]
 const Payment = (props) => {
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const order = props.route.params;
     const [selected, setSelected] = useState();
     const [card, setCard] = useState();
@@ -24,7 +26,7 @@ const Payment = (props) => {
             <Header>
                 <Body>
                     <Title>
-                        Wybierz metodę płatności
+                        {t('setPaymentMethod')}
                     </Title>
                 </Body>
             </Header>

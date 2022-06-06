@@ -6,11 +6,13 @@ import Error from "../../Shared/Error";
 import Toast from "react-native-toast-message";
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view'
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
-
+import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import baseURL from "../../assets/common/baseUrl";
 
 const Register = (props) => {
+  const { t, i18n } = useTranslation();
+  i18n.changeLanguage('pl');
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -93,7 +95,7 @@ const Register = (props) => {
         </View>
         <View>
           <EasyButton large primary onPress={() => register()}>
-            <Text style={{ color: "white" }}>Zarejestruj</Text>
+            <Text style={{ color: "white" }}>{t('register')}</Text>
           </EasyButton>
         </View>
         <View>
@@ -102,7 +104,7 @@ const Register = (props) => {
             secondary
             onPress={() => props.navigation.navigate("Logowanie")}
           >
-            <Text style={{ color: "white" }}>Powrot do logowania</Text>
+            <Text style={{ color: "white" }}>{t('backToLogin')}</Text>
           </EasyButton>
         </View>
       </FormContainer>

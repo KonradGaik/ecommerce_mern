@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Content, Left, Body, ListItem, Thumbnail, Text} from 'native-base';
-
+import { useTranslation } from 'react-i18next';
 let { width } = Dimensions.get("window")
 
 const SearchedProduct = props => {
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const { productsFiltered } = props;
     return(
         <Content style={{width: width}}>
@@ -30,7 +32,7 @@ const SearchedProduct = props => {
                 ))
             ): (
                 <View>
-                    <Text style={{alignSelf: 'center'}}>Brak poszukiwanych produktów</Text>
+                    <Text style={{alignSelf: 'center'}}>{t('weDidntFind')}</Text>
                 </View>
             )}
         

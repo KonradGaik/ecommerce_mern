@@ -7,6 +7,7 @@ import {
     Text,
     Button
 } from 'react-native'
+import { useTranslation } from 'react-i18next';
 import EasyButton from '../../Shared/StyledComponents/EasyButton'
 import { connect } from 'react-redux'
 import * as actions from '../../Redux/Actions/cartActions'
@@ -14,6 +15,8 @@ import * as actions from '../../Redux/Actions/cartActions'
 let { width } = Dimensions.get("window");
 
 const ProductCard = (props) => {
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('pl');
     const {name, price, image, countInStock} = props;
 
     return (
@@ -40,7 +43,7 @@ const ProductCard = (props) => {
                 props.addItemToCart(props)
             }}/>
         </View>
-        ) : <Text style={{marginTop:20}}>Niedostępne</Text> }
+        ) : <Text style={{marginTop:20}}>{t('unavailable')}</Text> }
         </View>
     )
 }
